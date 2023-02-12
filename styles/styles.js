@@ -36,10 +36,10 @@ export default StyleSheet.create({
   },
   cardImage: {
     position: "absolute",
-    bottom: 2,
-    right: 2,
-    width: 90,
-    height: 90,
+    bottom: -10,
+    right: -10,
+    width: 110,
+    height: 110,
     zIndex: 1,
   },
   bgImage: {
@@ -76,7 +76,6 @@ export default StyleSheet.create({
     width: 200,
     height: 200,
     position: "absolute",
-    top: 20,
   },
   containerMoves: {
     top: 180,

@@ -4,6 +4,7 @@ import {
   Image,
   ImageBackground,
   TouchableWithoutFeedback,
+  ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../styles/styles";
@@ -41,7 +42,15 @@ export default function card({ name, url }) {
   return (
     <>
       {isLoading ? (
-        <Text>Loading...</Text>
+        <ActivityIndicator
+          size="large"
+          color="rgb(244,197,24)"
+          style={{
+            flex: 1,
+            marginBottom: 140,
+            paddingTop: 70,
+          }}
+        />
       ) : (
         <>
           <TouchableWithoutFeedback
