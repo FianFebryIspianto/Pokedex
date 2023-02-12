@@ -46,26 +46,28 @@ export default function HomePage() {
           marginTop: 5,
         }}
       >
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#EA5D60",
-            width: 160,
-            height: 60,
-            borderRadius: 10,
-          }}
-          onPress={loadPrevious}
-        >
-          <Text
+        {currentPage === 0 ? null : (
+          <TouchableOpacity
             style={{
-              fontSize: 16,
-              color: "#ffff",
-              textAlign: "center",
-              marginTop: 20,
+              backgroundColor: "#EA5D60",
+              width: 160,
+              height: 60,
+              borderRadius: 10,
             }}
+            onPress={loadPrevious}
           >
-            Previous
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={{
+                fontSize: 16,
+                color: "#ffff",
+                textAlign: "center",
+                marginTop: 20,
+              }}
+            >
+              Previous
+            </Text>
+          </TouchableOpacity>
+        )}
         <TouchableOpacity
           style={{
             backgroundColor: "#F2F2F2",
