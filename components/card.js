@@ -39,58 +39,62 @@ export default function card({ name, url }) {
       pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
     return pokemonName;
   }
-  return (
-    <>
-      {isLoading ? (
-        <ActivityIndicator
-          size="large"
-          color="rgb(244,197,24)"
-          style={{
-            flex: 1,
-            marginBottom: 140,
-            paddingTop: 70,
-          }}
-        />
-      ) : (
-        <>
-          <TouchableWithoutFeedback
-            onPress={() => navigation.navigate("Detail", pokemon)}
-          >
-            <View style={styles.card}>
-              <View style={styles.cardSpacing}>
-                <View
-                  style={{
-                    ...styles.bgStyles,
-                    backgroundColor: pokemonColors[pokemon.types[0].type.name],
-                  }}
-                >
-                  <ImageBackground source={bgImg} style={styles.bgImage} />
-                  <Image
-                    style={styles.cardImage}
-                    source={{
-                      uri: pokemon.sprites.other["official-artwork"][
-                        "front_default"
-                      ],
-                    }}
-                  />
-                  <Text style={styles.cardName}>{getPokemonName()}</Text>
+  let content;
+  if (isLoading) {
+    content = (
+      <ActivityIndicator
+        size="large"
+        color="rgb(244,197,24)"
+        style={{
+          flex: 1,
+          marginBottom: 140,
+          paddingTop: 70,
+        }}
+      />
+    );
+  }
+  if (error) {
+    content = <Text></Text>;
+  }
+  if (pokemon) {
+    content = (
+      <TouchableWithoutFeedback
+        onPress={() => navigation.navigate("Detail", pokemon)}
+      >
+        <View style={styles.card}>
+          <View style={styles.cardSpacing}>
+            <View
+              style={{
+                ...styles.bgStyles,
+                backgroundColor: pokemonColors[pokemon.types[0].type.name],
+              }}
+            >
+              <ImageBackground source={bgImg} style={styles.bgImage} />
+              <Image
+                style={styles.cardImage}
+                source={{
+                  uri: pokemon.sprites.other["official-artwork"][
+                    "front_default"
+                  ],
+                }}
+              />
+              <Text style={styles.cardName}>{getPokemonName()}</Text>
 
-                  {pokemon.types.map((type, i) => {
-                    const typePokemon =
-                      type.type.name.charAt(0).toUpperCase() +
-                      type.type.name.slice(1);
-                    return (
-                      <View key={i} style={styles.cardTypeContainer}>
-                        <Text style={styles.cardTypeText}>{typePokemon}</Text>
-                      </View>
-                    );
-                  })}
-                </View>
-              </View>
+              {pokemon.types.map((type, i) => {
+                const typePokemon =
+                  type.type.name.charAt(0).toUpperCase() +
+                  type.type.name.slice(1);
+                return (
+                  <View key={i} style={styles.cardTypeContainer}>
+                    <Text style={styles.cardTypeText}>{typePokemon}</Text>
+                  </View>
+                );
+              })}
             </View>
-          </TouchableWithoutFeedback>
-        </>
-      )}
-    </>
-  );
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  }
+  return <>{content}</>;
 }
